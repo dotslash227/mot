@@ -15,13 +15,36 @@ class Signup extends React.Component{
             tags:[],
             businessAddress: '',
             businessDescription: '',
-            value: ''
+            value: '',
+            disableSubmit: true           
         }
     }
 
     static navigationOptions = {
         title: "Become a Member"
     }
+
+    checkForEnable(){
+        const {name, email, phone, businessName, tags, businessAddress, passwordMatch} = this.state;
+        if (name && email && phone && businessName && tags.length && businessAddress && passwordMatch) this.setState({disableSubmit:false});
+        console.log(this.state);
+    }
+
+    handleInput(text,field){
+        newState = this.state;        
+        switch(field){
+            case "recheckPassword":{                
+                if(this.state.password == text) this.setState({passwordMatch:true});                
+                break;
+            }
+            default:{                
+                newState[field] = text;
+                this.setState({newState});                
+                this.checkForEnable();
+                break;
+            }
+        }
+    }    
 
     addCategoryTags = (text) =>{        
         tags = this.state.tags;
@@ -33,13 +56,13 @@ class Signup extends React.Component{
                 tags.pop();
                 alert("You cannot enter more than 3 tags");                
             }
-            this.setState({tags, value:'' });            
+            this.setState({tags, value:'' });
         }                
+        this.checkForEnable();
     }
 
     removeTag = (key) =>{        
-        tags = this.state.tags;
-        (key == 0 ) && console.log("0 key");
+        tags = this.state.tags;        
         (key == 0) ? tags.shift() : tags.splice(key,key);        
         this.setState({tags});        
     }
@@ -51,30 +74,38 @@ class Signup extends React.Component{
                     <Form>
                         <Item stackedLabel>
                             <Label>Enter Your Name</Label>
-                            <Input />
+                            <Input autoCorrect={false} autoCapitalize="none" onChangeText={(text)=>this.handleInput(text, "name")} />
+                        </Item>
+                        <Item stackedLabel>
+                            <Label>Enter email address</Label>
+                            <Input autoCorrect={false} autoCapitalize="none" onChangeText={(text)=>this.handleInput(text, "email")} />
                         </Item>
                         <Item stackedLabel>
                             <Label>Enter Password</Label>
-                            <Input />
+                            <Input secureTextEntry autoCorrect={false} autoCapitalize="none" onChangeText={(text)=>this.handleInput(text, "password")} />
                         </Item>
                         <Item stackedLabel>
                             <Label>
                                 Confirm Password -
-                                {(!this.state.passwordMatch)?<Text> Passwords do not match</Text>:<Text> Passwords Match</Text>}
+                                {(this.state.passwordMatch)?<Text> Passwords Match</Text>:<Text> Passwords do not match</Text>}
                             </Label>
-                            <Input />
+                            <Input secureTextEntry autoCorrect={false} autoCapitalize="none" onChangeText={(text)=>this.handleInput(text, "recheckPassword")} />
+                        </Item>
+                        <Item stackedLabel>
+                            <Label>Enter Mobile Number</Label>
+                            <Input secureTextEntry autoCorrect={false} autoCapitalize="none" onChangeText={(text)=>this.handleInput(text, "phone")} />
                         </Item>
                         <Item stackedLabel>
                             <Label>Enter Business Name</Label>
-                            <Input />
+                            <Input autoCorrect={false} autoCapitalize="none" onChangeText={(text)=>this.handleInput(text, "businessName")} />
                         </Item>
                         <Item stackedLabel>
                             <Label>Enter Business Address</Label>
-                            <Input />
+                            <Input autoCorrect={false} autoCapitalize="none" onChangeText={(text)=>this.handleInput(text, "businessAddress")} />
                         </Item>
                         <Item stackedLabel>
                             <Label>Enter Business Description</Label>
-                            <Input />
+                            <Input autoCorrect={false} autoCapitalize="none" onChangeText={(text)=>this.handleInput(text, "businessDescription")} />
                         </Item>
                         <Item stackedLabel>
                             <Label>Enter upto 3 tags for your Business</Label>
@@ -95,12 +126,12 @@ class Signup extends React.Component{
                             })
                         }                            
                         </Grid>    
-                    </View>
+                    </View>                    
                 </Content>
                 <Footer>
                     <FooterTab>
-                        <Button>
-                            <Text>Submit Details</Text>
+                        <Button style={(!this.state.disableSubmit) && styles.submitButton} full disabled={this.state.disableSubmit}>
+                            <Text style={{color:"white"}}>Submit Details</Text>
                         </Button>
                     </FooterTab>
                 </Footer>
@@ -111,6 +142,10 @@ class Signup extends React.Component{
 }
 
 const styles = StyleSheet.create({
+    submitButton:{
+        backgroundColor: "green",
+        marginTop: 20,
+    },
     tagButton:{
         alignContent: "center",
         alignItems: "center",
