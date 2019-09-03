@@ -1,6 +1,9 @@
 import React from 'react';
 import {Container, Content, Form, Input, Label, Item, Button, Footer,FooterTab, Grid, Row, Col} from 'native-base';
 import {View, Text, StyleSheet, TouchableOpacity} from  'react-native';
+import {createUser, updateUser, createProfile} from '../../utils/Users';
+import {SpinnerScreen} from '../../components';
+import firebase from 'react-native-firebase';
 
 class Signup extends React.Component{
     constructor(props){
@@ -16,7 +19,8 @@ class Signup extends React.Component{
             businessAddress: '',
             businessDescription: '',
             value: '',
-            disableSubmit: true           
+            disableSubmit: true,
+            loading: false,        
         }
     }
 
@@ -66,8 +70,38 @@ class Signup extends React.Component{
         this.setState({tags});        
     }
 
+    handleSubmit(){
+        console.log("signing up user");
+        this.setState({loading:true});
+        createUser(this.state.email, this.state.password)
+        .then((response)=>{
+            console.log(response);
+            user = response.user;
+            updateUser(user, {name:this.state.name})
+            .then((response)=>{
+                createProfile(user, this.state)
+                .then((response)=>{
+                    console.log(response);
+                    alert("Your profile has been received. You will receive a notification once approved.");
+                    this.props.navigation.navigate("Login");
+                })                
+                .catch((error)=>{
+                    console.log(error);
+                })
+            })            
+            .catch((error)=>{
+                alert(error.message);
+            })
+        })
+        .catch((error)=>{
+            console.log(error);
+            alert(error.message);
+        })
+    }
+
     render(){
-        return(
+        if (this.state.loading) return <SpinnerScreen />        
+        else return(
             <Container>
                 <Content>
                     <Form>
@@ -92,7 +126,7 @@ class Signup extends React.Component{
                         </Item>
                         <Item stackedLabel>
                             <Label>Enter Mobile Number</Label>
-                            <Input secureTextEntry autoCorrect={false} autoCapitalize="none" onChangeText={(text)=>this.handleInput(text, "phone")} />
+                            <Input autoCorrect={false} autoCapitalize="none" onChangeText={(text)=>this.handleInput(text, "phone")} />
                         </Item>
                         <Item stackedLabel>
                             <Label>Enter Business Name</Label>
@@ -129,7 +163,7 @@ class Signup extends React.Component{
                 </Content>
                 <Footer>
                     <FooterTab>
-                        <Button style={(!this.state.disableSubmit) && styles.submitButton} full disabled={this.state.disableSubmit}>
+                        <Button onPress={()=>this.handleSubmit()} style={(!this.state.disableSubmit) && styles.submitButton} full disabled={this.state.disableSubmit}>
                             <Text style={{color:"white"}}>Submit Details</Text>
                         </Button>
                     </FooterTab>

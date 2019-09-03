@@ -2,6 +2,9 @@ import React from 'react';
 import {Image, Text, StyleSheet, View} from 'react-native';
 import {Container, Content, Button, Input, Item, Form, Label, Footer, FooterTab} from 'native-base';
 import {connect} from 'react-redux';
+import {loginUser} from '../../utils/Users';
+import {setUser} from '../../actions/setUser';
+import {SpinnerScreen} from '../../components';
 
 class Login extends React.Component{
     constructor(props){
@@ -9,12 +12,18 @@ class Login extends React.Component{
         this.state = {
             email: '',
             password: '',
-            disableLogin: true            
+            disableLogin: true,
+            loading: false      
         }        
     }
 
     static navigationOptions = {
         header: null,
+    }
+
+    componentDidMount(){
+        console.log(this.props.auth);
+        if(this.props.auth.isLoggedIn) this.props.navigation.navigate("Home");
     }
 
     handleInput(text, key){        
@@ -29,12 +38,26 @@ class Login extends React.Component{
             newState[key] = text;        
             if (this.state.email != "" && this.state.password != "" ) newState["disableLogin"] = false;
             this.setState(newState);              
-        }        
-        console.log(this.state);
+        }                
+    }
+
+    handleLogin(){
+        this.setState({loading:true});
+        loginUser(this.state.email, this.state.password)
+        .then((response)=>{
+            console.log(response);
+            const {email, displayName, uid} = response.user
+            this.props.setUser({email, displayName, uid});
+            this.props.navigation.navigate("Home");
+        })
+        .catch((error)=>{
+            console.log(error);            
+        })
     }
 
     render(){
-        return(
+        if (this.state.loading) return <SpinnerScreen />
+        else return(
             <Container>
                 <Content padder style={styles.loginScreen}>
                     <Image style={styles.logo} source={require("../../assets/icon.png")} />
@@ -47,7 +70,7 @@ class Login extends React.Component{
                             <Label>Password</Label>
                             <Input secureTextEntry autoCorrect={false} autoCapitalize="none" onChangeText={(text)=>this.handleInput(text, "password")} />
                         </Item>
-                        <Button disabled={this.state.disableLogin} style={styles.loginButton}>
+                        <Button disabled={this.state.disableLogin} style={styles.loginButton} onPress={()=>this.handleLogin()}>
                             <Text style={{color:"white"}}>Login</Text>
                         </Button>
                     </Form>
@@ -99,4 +122,12 @@ const mapStateToProps = (state) =>{
     }
 }
 
-export default connect(mapStateToProps)(Login);
+const mapDispatchToProps = (dispatch) => {
+    return{
+        setUser: (user) => {
+            dispatch(setUser(user))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
