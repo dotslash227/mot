@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image, Text, StyleSheet, View} from 'react-native';
 import {Container, Content, Button, Input, Item, Form, Label, Footer, FooterTab} from 'native-base';
+import {connect} from 'react-redux';
 
 class Login extends React.Component{
     constructor(props){
@@ -8,8 +9,8 @@ class Login extends React.Component{
         this.state = {
             email: '',
             password: '',
-            disableLogin: true
-        }
+            disableLogin: true            
+        }        
     }
 
     static navigationOptions = {
@@ -92,4 +93,10 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Login;
+const mapStateToProps = (state) =>{
+    return{
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(Login);

@@ -26,8 +26,7 @@ class Signup extends React.Component{
 
     checkForEnable(){
         const {name, email, phone, businessName, tags, businessAddress, passwordMatch} = this.state;
-        if (name && email && phone && businessName && tags.length && businessAddress && passwordMatch) this.setState({disableSubmit:false});
-        console.log(this.state);
+        if (name && email && phone && businessName && tags.length && businessAddress && passwordMatch) this.setState({disableSubmit:false});        
     }
 
     handleInput(text,field){
