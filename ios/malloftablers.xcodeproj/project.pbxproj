@@ -18,6 +18,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* malloftablersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* malloftablersTests.m */; };
 		4EDBEDD316BAF32E4C3C2F97 /* libPods-malloftablers-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BADCBAC4218D8A88741690 /* libPods-malloftablers-tvOS.a */; };
+		71442764231E4AF200FB6044 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71442763231E4AF100FB6044 /* GoogleService-Info.plist */; };
 		B47AC2298573060F86CCE37B /* libPods-malloftablersTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD646D00D4A105F4BFC100E /* libPods-malloftablersTests.a */; };
 		D95E946574397585CAB01259 /* libPods-malloftablers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 357A2DE91D010126602BFB6C /* libPods-malloftablers.a */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		2EBA7CAFA59C2333D3F48007 /* Pods-malloftablers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-malloftablers.release.xcconfig"; path = "Pods/Target Support Files/Pods-malloftablers/Pods-malloftablers.release.xcconfig"; sourceTree = "<group>"; };
 		357A2DE91D010126602BFB6C /* libPods-malloftablers.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-malloftablers.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70980FAAF32C39C006F77358 /* Pods-malloftablersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-malloftablersTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-malloftablersTests/Pods-malloftablersTests.debug.xcconfig"; sourceTree = "<group>"; };
+		71442763231E4AF100FB6044 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B3BECE1F5C167D4FE80297D /* Pods-malloftablers-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-malloftablers-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-malloftablers-tvOS/Pods-malloftablers-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		8CD646D00D4A105F4BFC100E /* libPods-malloftablersTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-malloftablersTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9864693FC2D4233D887E0477 /* Pods-malloftablers-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-malloftablers-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-malloftablers-tvOSTests/Pods-malloftablers-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		13B07FAE1A68108700A75B9A /* malloftablers */ = {
 			isa = PBXGroup;
 			children = (
+				71442763231E4AF100FB6044 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -337,6 +340,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				71442764231E4AF200FB6044 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

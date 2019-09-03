@@ -57,7 +57,7 @@ class Login extends React.Component{
                 </Content>
                 <Footer>
                     <FooterTab>
-                        <Button full success>
+                        <Button full success onPress={()=>this.props.navigation.navigate("Signup")}>
                             <Text style={{color:"white"}}>Become a Member</Text>
                         </Button>
                     </FooterTab>

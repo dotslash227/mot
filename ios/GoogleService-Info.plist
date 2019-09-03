@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>240091750773-uhqioha6ij7t95dae1u9010io4r3n8h5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.240091750773-uhqioha6ij7t95dae1u9010io4r3n8h5</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAoJLwyU7AOfFkPSzJWeQoBFFfWX1gmf8s</string>
+	<key>GCM_SENDER_ID</key>
+	<string>240091750773</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.malloftablers</string>
+	<key>PROJECT_ID</key>
+	<string>mall-of-tablers</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mall-of-tablers.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:240091750773:ios:4da7a40b118d9786</string>
+	<key>DATABASE_URL</key>
+	<string>https://mall-of-tablers.firebaseio.com</string>
+</dict>
+</plist>
